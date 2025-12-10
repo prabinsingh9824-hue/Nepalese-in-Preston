@@ -1,1 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nepalese in Preston (NIP) | Community Support Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Nepalese in Preston (NIP) – a community hub for Nepali people in Preston, UK. Jobs, accommodation, local information and community support."
+  />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #0b1120;
+      --accent: #2563eb;
+      --accent-soft: #93c5fd;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --card-bg: #020617;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+      --danger: #ef4444;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      padding-bottom: 40px;
+    }
+
+    .page {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 12px clamp(14px, 4vw, 28px);
+    }
+
+    /* HEADER / NAV */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0.96),
+          rgba(15, 23, 42, 0.75),
+          transparent
+        ),
+        transparent;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-block: 8px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #e5e7eb;
+      border: 2px solid rgba(15, 23, 42, 0.9);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+    }
+
+    .brand-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 16px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(to right, #2563eb, #38bdf8);
+      transition: width 180ms ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      border-radius: var(--radius-pill);
+      padding: 6px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      font-size: 1.1rem;
+    }
+
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px 10px 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 6px;
+      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+    }
+
+    .nav-mobile a {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      padding-block: 4px;
+    }
+
+    .nav-mobile a:hover {
+      color: var(--text-main);
+    }
+
+    @media (min-width: 780px) {
+      .nav-links {
+        display: flex;
+      }
+      .nav-toggle {
+        display: none;
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: 26px;
+      }
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(248, 250, 252, 0.25);
+      background: radial-gradient(circle at left, rgba(37, 99, 235, 0.4), transparent);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+    }
+
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3.1vw + 1.2rem, 2.7rem);
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-top: 8px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #2563eb, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .hero-subtitle strong {
+      color: var(--accent-soft);
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 11px 18px;
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: 160ms ease-out;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #2563eb, #38bdf8);
+      color: #f9fafb;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-ghost:hover {
+      background: #020617;
+    }
+
+    @media (min-width: 480px) {
+      .hero-cta {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .btn {
+        width: auto;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .btn {
+        width: 100%;
+      }
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, #111827 0, #020617 70%);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+      margin-top: 4px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card strong {
+      color: var(--accent-soft);
+    }
+
+    /* SECTIONS */
+
+    section {
+      margin-top: 28px;
+    }
+
+    .section-heading {
+      margin-bottom: 14px;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 3px;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 3px;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .two-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    @media (min-width: 860px) {
+      .two-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: var(--card-bg);
+      padding: 12px 14px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .list {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 0.88rem;
+    }
+
+    .list li {
+      margin-bottom: 4px;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.78rem;
+      margin-top: 6px;
+      color: var(--accent-soft);
+    }
+
+    .warning-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(239, 68, 68, 0.7);
+      background: rgba(127, 29, 29, 0.9);
+      padding: 12px 14px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+      font-size: 0.9rem;
+      color: #fee2e2;
+    }
+
+    .warning-card h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.25);
+      margin-top: 26px;
+      padding-top: 10px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    @media (min-width: 720px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="page">
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-logo-wrap" aria-hidden="true">
+            <img src="nip-logo.png" alt="Nepalese in Preston (NIP) logo" />
+          </div>
+          <div class="brand-text">Nepalese in Preston (NIP)</div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#jobs">Jobs</a>
+          <a href="#accommodation">Accommodation</a>
+          <a href="#local">Local Info</a>
+          <a href="#support">Support</a>
+          <a href="#rules">Rules</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <button class="nav-toggle" id="navToggle">
+          <span>☰</span> Menu
+        </button>
+      </nav>
+      <div class="nav-mobile" id="navMobile">
+        <a href="#home">Home</a>
+        <a href="#jobs">Jobs</a>
+        <a href="#accommodation">Accommodation</a>
+        <a href="#local">Local Info</a>
+        <a href="#support">Support</a>
+        <a href="#rules">Rules</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HOME -->
+    <section id="home" class="hero">
+      <div>
+        <div class="tagline">
+          <span class="tag-dot"></span>
+          Community support for Nepalese in Preston
+        </div>
+        <h1 class="hero-title">
+          Welcome to <span>Nepalese in Preston (NIP)</span>
+        </h1>
+        <p class="hero-subtitle">
+          This community has been created to bring together Nepali individuals living
+          in Preston, UK. Our aim is to build a strong, supportive network where we
+          help each other with <strong>jobs, accommodation, local information and
+          community support</strong>.
+        </p>
+
+        <div class="hero-cta">
+          <a
+            class="btn btn-primary"
+            href="https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd"
+            target="_blank"
+            rel="noreferrer"
+          >
+            📲 Join the WhatsApp Group
+          </a>
+          <a href="#rules" class="btn btn-ghost">
+            📌 Read group rules first
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span><span class="hero-meta-dot"></span> Admin: Prabin Mahat</span>
+          <span>Location: Preston, United Kingdom</span>
+          <span>Language: Nepali &amp; English</span>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <strong>Why this group exists</strong>
+        <p style="margin-top:4px;">
+          Whether you are new to Preston or have been here for years, NIP is here to:
+        </p>
+        <ul class="list">
+          <li>Share job opportunities and tips.</li>
+          <li>Help find rooms, flats and housemates.</li>
+          <li>Provide local information (transport, shopping, healthcare and more).</li>
+          <li>Offer community support, especially in emergencies.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- JOBS & ACCOMMODATION -->
+    <section id="jobs">
+      <div class="section-heading">
+        <div class="section-label">Jobs &amp; work</div>
+        <h2 class="section-title">Job opportunities for Nepalese in Preston</h2>
+        <p class="section-subtitle">
+          This section is for sharing work opportunities, referrals and application tips.
+        </p>
+      </div>
+
+      <div class="two-grid">
+        <div class="card">
+          <h3>How jobs will be shared</h3>
+          <ul class="list">
+            <li>Members can share verified job links and openings in the WhatsApp group.</li>
+            <li>Prefer real jobs only – no fake offers, scams or money-making schemes.</li>
+            <li>Whenever possible, include details: position, location, pay rate and contact.</li>
+            <li>Help others with CV tips, interview experience and referrals.</li>
+          </ul>
+          <div class="tag-pill">🧑‍💼 Please share useful and genuine job posts only.</div>
+        </div>
+
+        <div class="card">
+          <h3>Example job posts (demo)</h3>
+          <ul class="list">
+            <li><strong>Restaurant staff – Preston city centre</strong><br />
+              Evening shifts, part-time. Contact via group for details.</li>
+            <li><strong>Warehouse picker – Bamber Bridge</strong><br />
+              Full-time, training provided. Share link in group.</li>
+            <li><strong>Care assistant – Preston area</strong><br />
+              Experience preferred. Members can share vacancies.</li>
+          </ul>
+          <p class="section-subtitle" style="margin-top:6px;">
+            These are just examples. Admin and members will update with real jobs over time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="accommodation">
+      <div class="section-heading">
+        <div class="section-label">Accommodation</div>
+        <h2 class="section-title">Rooms, flats and housemates</h2>
+        <p class="section-subtitle">
+          Helping Nepalese in Preston find safe and affordable places to live.
+        </p>
+      </div>
+
+      <div class="two-grid">
+        <div class="card">
+          <h3>For people offering rooms</h3>
+          <ul class="list">
+            <li>Share area (e.g. Deepdale, City Centre, Fulwood).</li>
+            <li>Mention rent, bills, deposit and preferred move-in date.</li>
+            <li>Say if the room is single/couple, shared bathroom, etc.</li>
+            <li>Use private chat for sharing full address and personal details.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>For people looking for rooms</h3>
+          <ul class="list">
+            <li>Share budget, preferred location and if you are student/worker.</li>
+            <li>Tell if you are looking for short term or long term stay.</li>
+            <li>Be honest about your situation and respect other people’s space.</li>
+            <li>Do not pressure anyone for quick decisions or advance payments.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCAL INFO & SUPPORT -->
+    <section id="local">
+      <div class="section-heading">
+        <div class="section-label">Local information</div>
+        <h2 class="section-title">Living in Preston – quick guide</h2>
+        <p class="section-subtitle">
+          Basic information to help new Nepali arrivals settle in Preston, UK.
+        </p>
+      </div>
+
+      <div class="two-grid">
+        <div class="card">
+          <h3>Everyday life</h3>
+          <ul class="list">
+            <li>Transport – Preston Bus, trains from Preston Station, Stagecoach buses.</li>
+            <li>Shopping – city centre, Deepdale Retail Park, Asian grocery stores.</li>
+            <li>Healthcare – GP registration, NHS 111, emergency 999.</li>
+            <li>Banking – opening bank accounts, using ATMs and online banking.</li>
+          </ul>
+          <p class="section-subtitle" style="margin-top:6px;">
+            Members can share tips and experiences to make life easier for everyone.
+          </p>
+        </div>
+
+        <div class="card" id="support">
+          <h3>Community support</h3>
+          <ul class="list">
+            <li>Help new students or families understand local rules and systems.</li>
+            <li>Support each other during emergencies, health issues or difficult times.</li>
+            <li>Share important updates about visas, university, work or housing changes.</li>
+            <li>Encourage friendly meetups and events to keep the community connected.</li>
+          </ul>
+          <div class="tag-pill">🤝 We are stronger together as a community.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RULES / WARNING -->
+    <section id="rules">
+      <div class="section-heading">
+        <div class="section-label">Rules</div>
+        <h2 class="section-title">Group rules &amp; behaviour policy</h2>
+        <p class="section-subtitle">
+          To keep the group safe and useful, everyone must follow these rules.
+        </p>
+      </div>
+
+      <div class="warning-card">
+        <h3>⚠️ Important community warning</h3>
+        <ul class="list">
+          <li><strong>No abuse or harassment:</strong> No swearing, insulting, bullying,
+            personal attacks or targeting any person, caste, gender, religion or nationality.</li>
+          <li><strong>No unnecessary or unrelated links:</strong> Do not share spam links,
+            random TikTok/Reels, promotions, betting/loan apps or any suspicious websites.</li>
+          <li><strong>No hate speech or harassment in private messages:</strong> If any
+            member abuses or harasses others in DM, admin can remove them from the group.</li>
+          <li><strong>No fake news or scams:</strong> Only share information you believe is
+            true. If you are not sure, ask first.</li>
+          <li><strong>No forwarding of adult or offensive content:</strong> This group is
+            community friendly; such content is strictly banned.</li>
+        </ul>
+        <p style="margin-top:6px; font-size:0.86rem;">
+          🚫 Members who break these rules may receive a warning, temporary mute or
+          <strong>permanent removal</strong> from the group by the admin.
+        </p>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <h3>What we encourage</h3>
+        <ul class="list">
+          <li>Helping others with information, guidance and respect.</li>
+          <li>Sharing job and housing opportunities that are real and safe.</li>
+          <li>Keeping the group positive and welcoming for everyone.</li>
+          <li>Messaging admin privately if you see any problem or misuse.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT / ADMIN -->
+    <section id="contact">
+      <div class="section-heading">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Admin &amp; group contact</h2>
+        <p class="section-subtitle">
+          If you have any concerns, questions or suggestions about the group, you can
+          contact the admin directly.
+        </p>
+      </div>
+
+      <div class="two-grid">
+        <div class="card">
+          <h3>Admin details</h3>
+          <p>
+            <strong>Admin:</strong> Prabin Mahat<br />
+            <strong>Group:</strong> Nepalese in Preston (NIP)
+          </p>
+          <ul class="list">
+            <li>Best way to contact: send a direct message on the WhatsApp group.</li>
+            <li>You can also reach out for help regarding group misuse or conflicts.</li>
+          </ul>
+          <div class="tag-pill">👨‍💼 Admin tries to keep the group safe and fair for everyone.</div>
+        </div>
+
+        <div class="card">
+          <h3>Join or share the group</h3>
+          <p>Use the button below to join or share the invite link with other Nepalese in Preston:</p>
+          <a
+            class="btn btn-primary"
+            href="https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd"
+            target="_blank"
+            rel="noreferrer"
+            style="margin-top:8px;"
+          >
+            🔗 Join / Share WhatsApp Group
+          </a>
+          <p class="section-subtitle" style="margin-top:8px;">
+            Please only add people who genuinely want to be part of a respectful and
+            supportive Nepali community in Preston.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page footer-inner">
+      <div>
+        © <span id="year"></span> Nepalese in Preston (NIP) · Admin: Prabin Mahat
+      </div>
+      <div>This website is an informal community hub created to support Nepalese in Preston, UK.</div>
+    </div>
+  </footer>
+
+  <script>
+    // mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navMobile = document.getElementById("navMobile");
+    if (navToggle && navMobile) {
+      navToggle.addEventListener("click", () => {
+        navMobile.style.display =
+          navMobile.style.display === "flex" ? "none" : "flex";
+      });
+      navMobile.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth < 780) navMobile.style.display = "none";
+        });
+      });
+    }
+
+    // year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
